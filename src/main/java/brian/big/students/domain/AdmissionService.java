@@ -4,8 +4,10 @@ import brian.big.students.models.Student;
 import brian.big.students.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -45,15 +47,28 @@ public class AdmissionService {
 
         return student;
     }
-    public Student editStudent(Student student){
+
+    @Transactional
+    public Student updateStudent(Student student){
         if (!student.getFirstName().isBlank() &&
                 !student.getSurname().isBlank() &&
                 student.getDateOfBirth() != null &&
                 student.getDateOfAdmission() !=null
         ){
-            Optional<Student> studentById = repo.findById(student.getId());
-            if (studentById.isPresent()){
-                repo.save(student);
+            Student studentById = repo.findById(student.getId())
+                    .orElseThrow(() -> new IllegalStateException(""));
+
+            if (!Objects.equals(studentById.getFirstName(), student.getFirstName())){
+                studentById.setFirstName(student.getFirstName());
+            }
+            if (!Objects.equals(studentById.getSurname(), student.getSurname())){
+                studentById.setSurname(student.getSurname());
+            }
+            if (!Objects.equals(studentById.getDateOfBirth(), student.getDateOfBirth())){
+                studentById.setDateOfBirth(student.getDateOfBirth());
+            }
+            if (!Objects.equals(studentById.getDateOfAdmission(), student.getDateOfAdmission())){
+                studentById.setDateOfAdmission(student.getDateOfAdmission());
             }
 
         }

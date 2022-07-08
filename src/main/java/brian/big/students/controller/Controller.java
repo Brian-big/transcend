@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController("studentsController")
@@ -43,7 +42,7 @@ public class Controller {
     @PutMapping
     public ResponseEntity<Student> edit(@RequestBody Student student){
         ResponseEntity<Student> response;
-        Student student1 = admissionService.editStudent(student);
+        Student student1 = admissionService.updateStudent(student);
         if (student1 != null){
             response = new ResponseEntity<>(student1, HttpStatus.OK);
         }else response = new ResponseEntity<>(student, HttpStatus.INTERNAL_SERVER_ERROR);
