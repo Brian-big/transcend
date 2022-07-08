@@ -27,6 +27,12 @@ public class Controller {
         return studentRepo.findAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Student> getStudentById(@PathVariable long id){
+        Student student = admissionService.getStudentById(id);
+        return new ResponseEntity<>(student, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Student> add(@RequestBody Student student){
         ResponseEntity<Student> response;

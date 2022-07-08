@@ -48,6 +48,12 @@ public class AdmissionService {
         return student;
     }
 
+    public Student getStudentById(long id){
+        Student student = repo.findById(id)
+                .orElseThrow(() -> new IllegalStateException("No student with given id found"));
+        return student;
+    }
+
     @Transactional
     public Student updateStudent(Student student){
         if (!student.getFirstName().isBlank() &&
