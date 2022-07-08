@@ -12,15 +12,15 @@ public class Student{
     @Id
     @GeneratedValue
     private long id;
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
-    @Column(name = "surname")
+    @Column(name = "surname", nullable = false)
     private String surname;
-    @Column(name = "date_of_birth")
+    @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
 
     @Column(name = "admission_number", unique = true)
-    private String admissionNumber;
+    private int admissionNumber;
     @ManyToOne
     private Stream stream;
     @Column(name="date_of_admission")
@@ -30,7 +30,7 @@ public class Student{
     public Student() {
     }
 
-    public Student(String firstName, String surname, LocalDate dateOfBirth, String admissionNumber, Stream stream, LocalDate dateOfAdmission) {
+    public Student(String firstName, String surname, LocalDate dateOfBirth, int admissionNumber, Stream stream, LocalDate dateOfAdmission) {
         this.firstName = firstName;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;
@@ -41,7 +41,7 @@ public class Student{
 
 
 
-    public Student(long id, String firstName, String surname, LocalDate dateOfBirth, String admissionNumber, Stream stream, LocalDate dateOfAdmission) {
+    public Student(long id, String firstName, String surname, LocalDate dateOfBirth, int admissionNumber, Stream stream, LocalDate dateOfAdmission) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
@@ -83,11 +83,11 @@ public class Student{
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getAdmissionNumber() {
+    public int getAdmissionNumber() {
         return admissionNumber;
     }
 
-    public void setAdmissionNumber(String admissionNumber) {
+    public void setAdmissionNumber(int admissionNumber) {
         this.admissionNumber = admissionNumber;
     }
 
@@ -99,4 +99,11 @@ public class Student{
         this.stream = stream;
     }
 
+    public void setDateOfAdmission(LocalDate dateOfAdmission) {
+        this.dateOfAdmission = dateOfAdmission;
+    }
+
+    public LocalDate getDateOfAdmission() {
+        return dateOfAdmission;
+    }
 }
