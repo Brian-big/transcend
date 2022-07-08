@@ -50,4 +50,9 @@ public class Controller {
         }else response = new ResponseEntity<>(student, HttpStatus.INTERNAL_SERVER_ERROR);
         return response;
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable long id){
+        return admissionService.delete(id);
+    }
 }

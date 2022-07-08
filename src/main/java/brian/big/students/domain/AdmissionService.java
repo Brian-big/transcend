@@ -90,4 +90,15 @@ public class AdmissionService {
         }
         return student;
     }
+
+    public ResponseEntity<String> delete(long id) {
+        ResponseEntity<String> response;
+        Optional<Student> student = repo.findById(id);
+        if (student.isPresent()){
+            repo.deleteById(id);
+            response = new ResponseEntity<>("OPERATION: Delete success!", HttpStatus.OK);
+        }
+        else response = new ResponseEntity<>("Student with id not found!", HttpStatus.NOT_FOUND);
+        return response;
+    }
 }
