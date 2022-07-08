@@ -4,32 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/controller/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/models/Form.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/models/Stream.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/repository/FormRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/repository/StreamRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/staff/controller/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/staff/models/Teacher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/staff/repository/TeacherRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/models/Guardian.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/models/Prefect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/models/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/repository/GuardianRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/repository/PrefectRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/repository/StudentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="remove duplicate dependency">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/models/Prefect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/models/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/models/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/repository/PrefectRepository.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +100,14 @@
       <option name="presentableId" value="Default" />
       <updated>1657263987600</updated>
     </task>
+    <task id="LOCAL-00001" summary="remove duplicate dependency">
+      <created>1657276676507</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1657276676507</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -132,5 +120,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="remove duplicate dependency" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove duplicate dependency" />
   </component>
 </project>

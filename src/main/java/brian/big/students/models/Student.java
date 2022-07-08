@@ -26,15 +26,77 @@ public class Student{
     @Column(name="date_of_admission")
     private LocalDate dateOfAdmission;
 
-    @OneToOne
-    @JoinColumn(name = "prefect_id")
-    private Prefect prefect;
 
-    public Prefect getPrefect() {
-        return prefect;
+    public Student() {
     }
 
-    public void setPrefect(Prefect prefect) {
-        this.prefect = prefect;
+    public Student(String firstName, String surname, LocalDate dateOfBirth, String admissionNumber, Stream stream, LocalDate dateOfAdmission) {
+        this.firstName = firstName;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        this.admissionNumber = admissionNumber;
+        this.stream = stream;
+        this.dateOfAdmission = dateOfAdmission;
     }
+
+
+
+    public Student(long id, String firstName, String surname, LocalDate dateOfBirth, String admissionNumber, Stream stream, LocalDate dateOfAdmission) {
+        this.id = id;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        this.admissionNumber = admissionNumber;
+        this.stream = stream;
+        this.dateOfAdmission = dateOfAdmission;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getAdmissionNumber() {
+        return admissionNumber;
+    }
+
+    public void setAdmissionNumber(String admissionNumber) {
+        this.admissionNumber = admissionNumber;
+    }
+
+    public Stream getStream() {
+        return stream;
+    }
+
+    public void setStream(Stream stream) {
+        this.stream = stream;
+    }
+
 }
