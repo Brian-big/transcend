@@ -17,14 +17,10 @@ public class Controller {
 
     @Autowired
     AdmissionService admissionService;
-    @Autowired
-    private StudentRepository studentRepo;
-    @Autowired
-    private GuardianRepository guardianRepo;
 
     @GetMapping
-    public List<Student> all(){
-        return studentRepo.findAll();
+    public ResponseEntity<List<Student>> all(){
+        return admissionService.all();
     }
 
     @GetMapping("/{id}")

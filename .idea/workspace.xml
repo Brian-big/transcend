@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="Fix POST saves instead of updating, get last  admission number by querying admissions instead of id">
+    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="find student by id">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/domain/AdmissionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/domain/AdmissionService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,14 +51,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/brian/IdeaProjects/Transcend/src/main/java/brian/big/staff&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/brian/IdeaProjects/Transcend/src/main/java/brian/big/staff"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/brian/big/staff" />
@@ -138,7 +138,21 @@
       <option name="project" value="LOCAL" />
       <updated>1657297223020</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="use @transactional">
+      <created>1657303672136</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1657303672136</updated>
+    </task>
+    <task id="LOCAL-00007" summary="find student by id">
+      <created>1657306563176</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1657306563176</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -158,6 +172,8 @@
     <MESSAGE value="add student service layer" />
     <MESSAGE value="add student age" />
     <MESSAGE value="Fix POST saves instead of updating, get last  admission number by querying admissions instead of id" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix POST saves instead of updating, get last  admission number by querying admissions instead of id" />
+    <MESSAGE value="use @transactional" />
+    <MESSAGE value="find student by id" />
+    <option name="LAST_COMMIT_MESSAGE" value="find student by id" />
   </component>
 </project>

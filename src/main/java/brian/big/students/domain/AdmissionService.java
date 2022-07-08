@@ -3,10 +3,14 @@ package brian.big.students.domain;
 import brian.big.students.models.Student;
 import brian.big.students.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -18,6 +22,12 @@ public class AdmissionService {
 
     @Autowired
     private StudentRepository repo;
+
+    public ResponseEntity<List<Student>> all(){
+        List<Student> students = repo.findAll();
+        return new ResponseEntity<>(students, HttpStatus.OK);
+    }
+
     public Student admitStudent(Student student){
         Student lastStudent = repo.findTopByOrderByAdmissionNumberDesc();
         int lastAdmNo;
