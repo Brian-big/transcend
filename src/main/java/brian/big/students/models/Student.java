@@ -4,6 +4,7 @@ import brian.big.classes.models.Stream;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table(name = "student")
@@ -18,6 +19,9 @@ public class Student{
     private String surname;
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
+
+    @Transient
+    private Integer age;
 
     @Column(name = "admission_number", unique = true)
     private int admissionNumber;
@@ -105,5 +109,13 @@ public class Student{
 
     public LocalDate getDateOfAdmission() {
         return dateOfAdmission;
+    }
+
+    public Integer getAge(){
+        return Period.between(this.dateOfBirth, LocalDate.now()).getYears();
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

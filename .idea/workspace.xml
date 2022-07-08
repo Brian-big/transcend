@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="postpone prefect">
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/domain/AdmissionService.java" afterDir="false" />
+    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="add student service layer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/models/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/models/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/repository/StudentRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +37,7 @@
       <map>
         <entry key="com.haulmont.jpb.jpaInspector" value="false" />
         <entry key="com.haulmont.jpb.jpaPalette" value="false" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
   </component>
@@ -114,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657277934494</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add student service layer">
+      <created>1657289188823</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1657289188823</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,6 +135,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="remove duplicate dependency" />
     <MESSAGE value="postpone prefect" />
-    <option name="LAST_COMMIT_MESSAGE" value="postpone prefect" />
+    <MESSAGE value="add student service layer" />
+    <option name="LAST_COMMIT_MESSAGE" value="add student service layer" />
   </component>
 </project>
