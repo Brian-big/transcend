@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.Optional;
 
 
 @Service("admissionService")
-public class AdmissionService {
+public class StudentService {
 
     private static final int startAdmNo = 1000;
 

@@ -1,9 +1,7 @@
 package brian.big.students.controller;
 
-import brian.big.students.domain.AdmissionService;
+import brian.big.students.domain.StudentService;
 import brian.big.students.models.Student;
-import brian.big.students.repository.GuardianRepository;
-import brian.big.students.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,23 +14,23 @@ import java.util.List;
 public class Controller {
 
     @Autowired
-    AdmissionService admissionService;
+    StudentService studentService;
 
     @GetMapping
     public ResponseEntity<List<Student>> all(){
-        return admissionService.all();
+        return studentService.all();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Student> getStudentById(@PathVariable long id){
-        Student student = admissionService.getStudentById(id);
+        Student student = studentService.getStudentById(id);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<Student> add(@RequestBody Student student){
         ResponseEntity<Student> response;
-        if (admissionService.admitStudent(student) != null){
+        if (studentService.admitStudent(student) != null){
             response = new ResponseEntity<>(student, HttpStatus.CREATED);
         }
         else {
@@ -44,7 +42,7 @@ public class Controller {
     @PutMapping
     public ResponseEntity<Student> edit(@RequestBody Student student){
         ResponseEntity<Student> response;
-        Student student1 = admissionService.updateStudent(student);
+        Student student1 = studentService.updateStudent(student);
         if (student1 != null){
             response = new ResponseEntity<>(student1, HttpStatus.OK);
         }else response = new ResponseEntity<>(student, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -53,6 +51,6 @@ public class Controller {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable long id){
-        return admissionService.delete(id);
+        return studentService.delete(id);
     }
 }
