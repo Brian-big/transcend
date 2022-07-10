@@ -16,7 +16,7 @@ public class Controller {
     @Autowired
     StudentService studentService;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Student>> all(){
         return studentService.all();
     }
@@ -24,6 +24,12 @@ public class Controller {
     @GetMapping("/{id}")
     public ResponseEntity<Student> getStudentById(@PathVariable long id){
         Student student = studentService.getStudentById(id);
+        return new ResponseEntity<>(student, HttpStatus.OK);
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<Student> getStudentByAdmissionNumber(@RequestParam(name = "adm") int admNo){
+        Student student = studentService.getStudentByAdmissionNumber(admNo);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 

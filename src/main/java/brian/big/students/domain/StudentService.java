@@ -58,9 +58,13 @@ public class StudentService {
     }
 
     public Student getStudentById(long id){
-        Student student = repo.findById(id)
-                .orElseThrow(() -> new IllegalStateException("No student with given id found"));
-        return student;
+        Optional<Student> student = repo.findById(id);
+        return student.orElse(null);
+    }
+
+    public Student getStudentByAdmissionNumber(int admNo){
+        Optional<Student> student = repo.findByAdmissionNumber(admNo);
+        return student.orElse(null);
     }
 
     @Transactional

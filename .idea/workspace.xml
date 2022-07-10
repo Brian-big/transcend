@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="rename AdmissionService">
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/ClassesService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/StreamsService.java" afterDir="false" />
+    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="add classes endpoints">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/classes/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/classes/models/Form.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/models/Form.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/classes/models/Stream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/models/Stream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/domain/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/domain/StudentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657375498884</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add classes endpoints">
+      <created>1657455175643</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1657455175644</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -202,6 +206,7 @@
     <MESSAGE value="remove unused fields" />
     <MESSAGE value="add delete student endpoint" />
     <MESSAGE value="rename AdmissionService" />
-    <option name="LAST_COMMIT_MESSAGE" value="rename AdmissionService" />
+    <MESSAGE value="add classes endpoints" />
+    <option name="LAST_COMMIT_MESSAGE" value="add classes endpoints" />
   </component>
 </project>
