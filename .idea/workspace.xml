@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="promote student">
+    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="fix issue: updating instead of creating new form on student promotion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/admissions/domain/AdmissionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/admissions/domain/AdmissionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/ClassesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/ClassesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/classes/repository/FormRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/repository/FormRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657470893045</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="fix issue: updating instead of creating new form on student promotion">
+      <created>1657475737034</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1657475737034</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -242,16 +246,12 @@
     <MESSAGE value="get students per stream" />
     <MESSAGE value="get students per form" />
     <MESSAGE value="promote student" />
-    <option name="LAST_COMMIT_MESSAGE" value="promote student" />
+    <MESSAGE value="fix issue: updating instead of creating new form on student promotion" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix issue: updating instead of creating new form on student promotion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/brian/big/admissions/domain/AdmissionService.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/brian/big/admissions/domain/AdmissionService.java</url>
           <line>80</line>
