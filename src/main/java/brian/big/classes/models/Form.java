@@ -28,6 +28,17 @@ public class Form {
 
     public Form(int form) {
         this.form = form;
+        switch (form){
+            case 1: verboseName = "One";
+            break;
+            case 2: verboseName = "Two";
+            break;
+            case 3: verboseName = "Three";
+            break;
+            case 4: verboseName = "Four";
+            break;
+            default: verboseName = String.valueOf(form);
+        }
     }
 
     public long getId() {
@@ -52,5 +63,13 @@ public class Form {
 
     public void setVerboseName(String verboseName) {
         this.verboseName = verboseName;
+    }
+
+    @Override
+    public String toString() {
+        return "Form{" +
+                "form=" + form +
+                ", verboseName='" + verboseName + '\'' +
+                '}';
     }
 }

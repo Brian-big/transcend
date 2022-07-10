@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="add delete student endpoint" />
+    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="rename AdmissionService">
+      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/ClassesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/StreamsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/classes/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/classes/models/Form.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/models/Form.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/classes/models/Stream.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/models/Stream.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,19 +54,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/brian/IdeaProjects/Transcend/src/main/java/brian/big/staff"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/brian/IdeaProjects/Transcend/src/main/java/brian/big/staff&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/brian/big/staff" />
       <recent name="$PROJECT_DIR$/src/main/java/brian/big" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="brian.big.classes.domain" />
       <recent name="brian.big.students.controller" />
       <recent name="brian.big.staff.controller" />
     </key>
@@ -162,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657310037059</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="rename AdmissionService">
+      <created>1657375498884</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1657375498884</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -186,6 +201,7 @@
     <MESSAGE value="find student by id" />
     <MESSAGE value="remove unused fields" />
     <MESSAGE value="add delete student endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="add delete student endpoint" />
+    <MESSAGE value="rename AdmissionService" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename AdmissionService" />
   </component>
 </project>
