@@ -44,6 +44,11 @@ public class Controller {
         return classesService.delete(id);
     }
 
+    @GetMapping("/forms/{id}/students")
+    public ResponseEntity<List<Student>> formStudents(@PathVariable int id){
+        return classesService.studentPerForm(id);
+    }
+
     @GetMapping("/streams")
     public ResponseEntity<List<Stream>> allStreams(){
         return streamsService.getAll();

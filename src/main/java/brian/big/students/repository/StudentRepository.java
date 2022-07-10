@@ -14,4 +14,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     @Query("select s from Student s where s.stream.id = ?1")
     List<Student> studentsInStream(long id);
+
+    @Query("select s from Student s where s.stream.form.form = ?1")
+    List<Student> studentsInForm(int form);
 }

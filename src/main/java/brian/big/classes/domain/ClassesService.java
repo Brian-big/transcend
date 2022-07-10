@@ -2,6 +2,8 @@ package brian.big.classes.domain;
 
 import brian.big.classes.models.Form;
 import brian.big.classes.repository.FormRepository;
+import brian.big.students.domain.StudentService;
+import brian.big.students.models.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ import java.util.Objects;
 public class ClassesService {
     @Autowired
     private FormRepository formRepository;
+    @Autowired
+    private StudentService studentService;
 
 
     public ResponseEntity<List<Form>> getAll(){
@@ -48,6 +52,10 @@ public class ClassesService {
     public ResponseEntity<String> delete(long id){
         formRepository.deleteById(id);
         return new ResponseEntity<>("Form Deleted", HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<Student>> studentPerForm(int form){
+        return studentService.getStudentsInForm(form);
     }
 
 }

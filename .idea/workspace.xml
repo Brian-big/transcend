@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="get student by admission number">
+    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="get students per stream">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/classes/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/StreamsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/StreamsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/ClassesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/ClassesService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/domain/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/domain/StudentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/repository/StudentRepository.java" afterDir="false" />
@@ -191,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657457305456</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="get students per stream">
+      <created>1657462990426</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1657462990426</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -218,6 +225,7 @@
     <MESSAGE value="rename AdmissionService" />
     <MESSAGE value="add classes endpoints" />
     <MESSAGE value="get student by admission number" />
-    <option name="LAST_COMMIT_MESSAGE" value="get student by admission number" />
+    <MESSAGE value="get students per stream" />
+    <option name="LAST_COMMIT_MESSAGE" value="get students per stream" />
   </component>
 </project>

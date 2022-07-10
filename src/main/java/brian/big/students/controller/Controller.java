@@ -64,4 +64,9 @@ public class Controller {
     public ResponseEntity<List<Student>> studentsInStream(@RequestParam(name = "stream") int streamId){
         return studentService.getStudentsInStream(streamId);
     }
+
+    @GetMapping(params = {"form"})
+    public ResponseEntity<List<Student>> studentsPerForm(@RequestParam(name = "form") int form){
+        return studentService.getStudentsInForm(form);
+    }
 }

@@ -109,4 +109,9 @@ public class StudentService {
         List<Student> students = repo.studentsInStream(streamId);
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
+
+    public ResponseEntity<List<Student>> getStudentsInForm(int form){
+        List<Student> students = repo.studentsInForm(form);
+        return new ResponseEntity<>(students, HttpStatus.OK);
+    }
 }
