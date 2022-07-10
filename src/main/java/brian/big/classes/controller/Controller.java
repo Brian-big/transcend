@@ -6,6 +6,7 @@ import brian.big.classes.models.Form;
 import brian.big.classes.models.Stream;
 import brian.big.students.models.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,8 @@ public class Controller {
 
     @PostMapping("/forms")
     public ResponseEntity<Form> add(@RequestBody Form form){
-        return classesService.insert(form);
+        Form form1 = classesService.insert(form);
+        return new ResponseEntity<>(form1, HttpStatus.OK);
     }
 
     @PutMapping("/forms")
@@ -61,7 +63,8 @@ public class Controller {
 
     @PostMapping("/streams")
     public ResponseEntity<Stream> add(@RequestBody Stream stream){
-        return streamsService.insert(stream);
+        Stream stream1 = streamsService.insert(stream);
+        return new ResponseEntity<>(stream1, HttpStatus.OK);
     }
 
     @PutMapping("/streams")

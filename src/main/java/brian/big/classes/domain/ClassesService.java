@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class ClassesService {
@@ -31,9 +32,8 @@ public class ClassesService {
         return new ResponseEntity<>(form, HttpStatus.OK);
     }
 
-    public ResponseEntity<Form> insert(Form form){
-        Form form1 = formRepository.save(form);
-        return new ResponseEntity<>(form1, HttpStatus.CREATED);
+    public Form insert(Form form){
+        return formRepository.save(form);
     }
 
     @Transactional
@@ -58,4 +58,7 @@ public class ClassesService {
         return studentService.getStudentsInForm(form);
     }
 
+    public Optional<Form> getForm(int currentForm) {
+        return formRepository.findByForm(currentForm);
+    }
 }

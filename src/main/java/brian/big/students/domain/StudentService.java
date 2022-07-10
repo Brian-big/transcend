@@ -1,5 +1,6 @@
 package brian.big.students.domain;
 
+import brian.big.admissions.domain.AdmissionService;
 import brian.big.students.models.Student;
 import brian.big.students.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,15 @@ import java.util.Objects;
 import java.util.Optional;
 
 
-@Service("admissionService")
+@Service("studentService")
 public class StudentService {
 
     private static final int startAdmNo = 1000;
 
     @Autowired
     private StudentRepository repo;
+    @Autowired
+    private AdmissionService admissionService;
 
     public ResponseEntity<List<Student>> all(){
         List<Student> students = repo.findAll();
@@ -113,5 +116,9 @@ public class StudentService {
     public ResponseEntity<List<Student>> getStudentsInForm(int form){
         List<Student> students = repo.studentsInForm(form);
         return new ResponseEntity<>(students, HttpStatus.OK);
+    }
+
+    public Student promote(int id){
+        return admissionService.promoteStudent(id);
     }
 }

@@ -69,4 +69,9 @@ public class Controller {
     public ResponseEntity<List<Student>> studentsPerForm(@RequestParam(name = "form") int form){
         return studentService.getStudentsInForm(form);
     }
+    @PutMapping("/{id}/promote")
+    public ResponseEntity<Student> promote(@PathVariable int id){
+        Student student = studentService.promote(id);
+        return new ResponseEntity<>(student, HttpStatus.OK);
+    }
 }

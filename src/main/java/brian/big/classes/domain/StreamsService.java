@@ -1,5 +1,6 @@
 package brian.big.classes.domain;
 
+import brian.big.admissions.domain.AdmissionService;
 import brian.big.classes.models.Stream;
 import brian.big.classes.repository.StreamRepository;
 import brian.big.students.domain.StudentService;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class StreamsService {
@@ -30,9 +32,8 @@ public class StreamsService {
         return new ResponseEntity<>(stream, HttpStatus.OK);
     }
 
-    public ResponseEntity<Stream> insert(Stream stream){
-        Stream stream1 = streamRepository.save(stream);
-        return new ResponseEntity<>(stream1, HttpStatus.OK);
+    public Stream insert(Stream stream){
+        return streamRepository.save(stream);
     }
 
     @Transactional
@@ -58,4 +59,9 @@ public class StreamsService {
         return studentService.getStudentsInStream(streamId);
 
     }
+
+    public Optional<Stream> getStream(int form, String name) {
+        return  streamRepository.findStream(form, name);
+    }
+
 }
