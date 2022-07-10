@@ -32,6 +32,8 @@ public class AdmissionService {
         }
 
         Stream currentStream = student.getStream();
+        if (currentStream==null)
+            return null;
         Stream nextStream = handleStreamPromotion(currentStream);
 
         student.setStream(nextStream);
@@ -66,22 +68,22 @@ public class AdmissionService {
     }
 
     private Form handleFormPromotion(Form currentForm){
+        Form newForm;
         int currForm = currentForm.getForm();
-        Optional<Form> formNext;
+        Form formNext;
         if (currForm >= 4){
             return null;
         }else {
             currForm++;
-            currentForm.setForm(currForm);
+            newForm = new Form(currForm);
         }
 
-        formNext = classesService.getForm(currForm);
-        if (formNext.isPresent()){
-            return formNext.get();
+        formNext = classesService.getForm(newForm.getForm());
+        if (formNext != null){
+            return formNext;
         }
         else{
-            Form form = new Form(currForm);
-            Form insertedForm = classesService.insert(form);
+            Form insertedForm = classesService.insert(newForm);
             if (insertedForm == null){
                 System.out.println("New Form creation failed");
                 return null;

@@ -58,7 +58,7 @@ public class ClassesService {
         return studentService.getStudentsInForm(form);
     }
 
-    public Optional<Form> getForm(int currentForm) {
+    public Form getForm(int currentForm) {
         return formRepository.findByForm(currentForm);
     }
 }
