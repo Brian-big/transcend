@@ -104,4 +104,9 @@ public class StudentService {
         else response = new ResponseEntity<>("Student with id not found!", HttpStatus.NOT_FOUND);
         return response;
     }
+
+    public ResponseEntity<List<Student>> getStudentsInStream(int streamId){
+        List<Student> students = repo.studentsInStream(streamId);
+        return new ResponseEntity<>(students, HttpStatus.OK);
+    }
 }

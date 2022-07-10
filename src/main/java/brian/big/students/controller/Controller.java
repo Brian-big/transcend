@@ -27,7 +27,7 @@ public class Controller {
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
-    @GetMapping("/")
+    @GetMapping(params = {"adm"})
     public ResponseEntity<Student> getStudentByAdmissionNumber(@RequestParam(name = "adm") int admNo){
         Student student = studentService.getStudentByAdmissionNumber(admNo);
         return new ResponseEntity<>(student, HttpStatus.OK);
@@ -58,5 +58,10 @@ public class Controller {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable long id){
         return studentService.delete(id);
+    }
+
+    @GetMapping(params = {"stream"})
+    public ResponseEntity<List<Student>> studentsInStream(@RequestParam(name = "stream") int streamId){
+        return studentService.getStudentsInStream(streamId);
     }
 }

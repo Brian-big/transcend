@@ -4,6 +4,7 @@ import brian.big.classes.domain.ClassesService;
 import brian.big.classes.domain.StreamsService;
 import brian.big.classes.models.Form;
 import brian.big.classes.models.Stream;
+import brian.big.students.models.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -66,5 +67,10 @@ public class Controller {
     @DeleteMapping("/streams/{id}")
     public ResponseEntity<String> deleteStream(@PathVariable long id){
         return streamsService.delete(id);
+    }
+
+    @GetMapping("/streams/{id}/students")
+    public ResponseEntity<List<Student>> streamStudents(@PathVariable int id){
+        return streamsService.getStudentsInStream(id);
     }
 }
