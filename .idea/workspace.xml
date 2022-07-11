@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="add thymeleaf deps, add bootstrap static files">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy-datasource.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/core/web/controller/WebController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="heroku pg creds">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/ClassesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/ClassesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/StreamsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/classes/domain/StreamsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/domain/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/domain/StudentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +61,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "/home/brian/IdeaProjects/Transcend/src/main/resources/static"
+    "last_opened_file_path": "/home/brian/IdeaProjects/Transcend/src/main/resources/static",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -87,6 +89,7 @@
       <command value="mvn compile" />
       <command value="mvn clean" />
       <command value="mvn install" />
+      <command value="mvn clean install" />
     </option>
   </component>
   <component name="RunManager">
@@ -237,7 +240,21 @@
       <option name="project" value="LOCAL" />
       <updated>1657481843866</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fix thymeleaf deps, homepage">
+      <created>1657494119440</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1657494119440</updated>
+    </task>
+    <task id="LOCAL-00019" summary="heroku pg creds">
+      <created>1657497654618</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1657497654620</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -269,7 +286,9 @@
     <MESSAGE value="promote student" />
     <MESSAGE value="fix issue: updating instead of creating new form on student promotion" />
     <MESSAGE value="add thymeleaf deps, add bootstrap static files" />
-    <option name="LAST_COMMIT_MESSAGE" value="add thymeleaf deps, add bootstrap static files" />
+    <MESSAGE value="fix thymeleaf deps, homepage" />
+    <MESSAGE value="heroku pg creds" />
+    <option name="LAST_COMMIT_MESSAGE" value="heroku pg creds" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

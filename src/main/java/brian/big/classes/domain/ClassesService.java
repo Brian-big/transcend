@@ -27,9 +27,8 @@ public class ClassesService {
         return new ResponseEntity<>(forms, HttpStatus.OK);
     }
     public ResponseEntity<Form> getFormById(long id){
-        Form form = formRepository.findById(id)
-                .orElseThrow();
-        return new ResponseEntity<>(form, HttpStatus.OK);
+        Optional<Form> form = formRepository.findById(id);
+        return new ResponseEntity<>(form.get(), HttpStatus.OK);
     }
 
     public Form insert(Form form){

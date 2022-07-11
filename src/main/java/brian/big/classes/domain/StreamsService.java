@@ -27,9 +27,8 @@ public class StreamsService {
         return new ResponseEntity<>(streams, HttpStatus.OK);
     }
     public ResponseEntity<Stream> getById(long id){
-        Stream stream = streamRepository.findById(id)
-                .orElseThrow();
-        return new ResponseEntity<>(stream, HttpStatus.OK);
+        Optional<Stream> stream = streamRepository.findById(id);
+        return new ResponseEntity<>(stream.get(), HttpStatus.OK);
     }
 
     public Stream insert(Stream stream){

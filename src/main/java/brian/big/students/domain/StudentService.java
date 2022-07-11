@@ -72,8 +72,8 @@ public class StudentService {
 
     @Transactional
     public Student updateStudent(Student student){
-        if (!student.getFirstName().isBlank() &&
-                !student.getSurname().isBlank() &&
+        if (!Objects.equals(student.getFirstName(), "") &&
+                !Objects.equals(student.getSurname(), "") &&
                 student.getDateOfBirth() != null &&
                 student.getDateOfAdmission() !=null
         ){
