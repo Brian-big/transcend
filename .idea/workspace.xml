@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="authenticate in memory authentication">
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/accounts/controller/AccountsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/accounts/services/AppUserPermissions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/brian/big/accounts/services/AppUserRoles.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/sb-admin-2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/accounts/register.html" afterDir="false" />
+    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="login page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/accounts/services/AppSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/accounts/services/AppSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -329,7 +320,28 @@
       <option name="project" value="LOCAL" />
       <updated>1657615138452</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Basic Role based authentication: only allow developer to access the api">
+      <created>1657618657455</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1657618657455</updated>
+    </task>
+    <task id="LOCAL-00030" summary="offline db">
+      <created>1657618696053</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1657618696053</updated>
+    </task>
+    <task id="LOCAL-00031" summary="login page">
+      <created>1657618720803</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1657618720803</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -343,7 +355,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="security" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -356,9 +368,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="postpone prefect" />
-    <MESSAGE value="add student service layer" />
-    <MESSAGE value="add student age" />
     <MESSAGE value="Fix POST saves instead of updating, get last  admission number by querying admissions instead of id" />
     <MESSAGE value="use @transactional" />
     <MESSAGE value="find student by id" />
@@ -381,7 +390,10 @@
     <MESSAGE value="basic authentication" />
     <MESSAGE value="authenticate only the api" />
     <MESSAGE value="authenticate in memory authentication" />
-    <option name="LAST_COMMIT_MESSAGE" value="authenticate in memory authentication" />
+    <MESSAGE value="Basic Role based authentication: only allow developer to access the api" />
+    <MESSAGE value="offline db" />
+    <MESSAGE value="login page" />
+    <option name="LAST_COMMIT_MESSAGE" value="login page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

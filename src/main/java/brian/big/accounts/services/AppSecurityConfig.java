@@ -28,6 +28,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable() //TODO: fix this
                 .authorizeRequests()
                 .antMatchers("/api/**").hasRole(DEVELOPER.name())
                 .and()
