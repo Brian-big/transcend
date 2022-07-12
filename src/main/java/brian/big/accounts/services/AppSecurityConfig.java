@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import static brian.big.accounts.services.AppUserRoles.*;
+
 @Configuration
 @EnableWebSecurity
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -27,8 +29,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/api/**")
-                .authenticated()
+                .antMatchers("/api/**").hasRole(DEVELOPER.name())
                 .and()
                 .httpBasic();
     }
@@ -39,11 +40,26 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         UserDetails developerDetails = User.builder()
                 .username("developer")
                 .password(encoder.encode("developer"))
-                .roles("DEVELOPER")
+                .roles(DEVELOPER.name())
                 .build();
 
+        UserDetails userBrian = User.builder()
+                .username("brian")
+                .password(encoder.encode("passwordAdmin"))
+                .roles(ADMIN.name())
+                .build();
+
+        UserDetails userMerlin = User.builder()
+                .username("merlin")
+                .password(encoder.encode("merlin"))
+                .roles(STUDENT.name())
+                .build();
+
+
         return new InMemoryUserDetailsManager(
-                developerDetails
+                developerDetails,
+                userBrian,
+                userMerlin
         );
     }
 }
