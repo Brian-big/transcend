@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="update index.html">
-      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/students/controller/Controller.java" afterDir="false" />
+    <list default="true" id="ece62075-b2ef-4064-8497-1afff19bb4cc" name="Changes" comment="shorten all-students endpoint">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/brian/big/accounts/services/AppSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/brian/big/accounts/services/AppSecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,13 +20,14 @@
         <option value="Interface" />
         <option value="HTML File" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="security" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -61,7 +63,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/brian/IdeaProjects/Transcend/src/main/resources/static&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/brian/IdeaProjects/Transcend/src/main/resources/static/css&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -70,6 +72,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/static/css" />
+      <recent name="$PROJECT_DIR$/src/main/resources/templates/accounts" />
       <recent name="$PROJECT_DIR$/src/main/resources/static" />
       <recent name="$PROJECT_DIR$/src/main/java/brian/big/staff" />
       <recent name="$PROJECT_DIR$/src/main/java/brian/big" />
@@ -108,7 +112,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -276,7 +279,70 @@
       <option name="project" value="LOCAL" />
       <updated>1657517815236</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;src/main/resources/templates/index.html">
+      <created>1657525009535</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1657525009535</updated>
+    </task>
+    <task id="LOCAL-00024" summary="add spring security deps">
+      <created>1657525122574</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1657525122574</updated>
+    </task>
+    <task id="LOCAL-00025" summary="basic authentication">
+      <created>1657612791478</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1657612791478</updated>
+    </task>
+    <task id="LOCAL-00026" summary="authenticate only the api">
+      <created>1657613512146</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1657613512146</updated>
+    </task>
+    <task id="LOCAL-00027" summary="authenticate in memory authentication">
+      <created>1657615126466</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1657615126466</updated>
+    </task>
+    <task id="LOCAL-00028" summary="authenticate in memory authentication">
+      <created>1657615138452</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1657615138452</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Basic Role based authentication: only allow developer to access the api">
+      <created>1657618657455</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1657618657455</updated>
+    </task>
+    <task id="LOCAL-00030" summary="offline db">
+      <created>1657618696053</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1657618696053</updated>
+    </task>
+    <task id="LOCAL-00031" summary="login page">
+      <created>1657618720803</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1657618720803</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -290,7 +356,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="heroku/main" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -303,10 +369,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove duplicate dependency" />
-    <MESSAGE value="postpone prefect" />
-    <MESSAGE value="add student service layer" />
-    <MESSAGE value="add student age" />
     <MESSAGE value="Fix POST saves instead of updating, get last  admission number by querying admissions instead of id" />
     <MESSAGE value="use @transactional" />
     <MESSAGE value="find student by id" />
@@ -324,7 +386,15 @@
     <MESSAGE value="heroku pg creds" />
     <MESSAGE value="heroku deploy: use java 8" />
     <MESSAGE value="update index.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="update index.html" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;src/main/resources/templates/index.html" />
+    <MESSAGE value="add spring security deps" />
+    <MESSAGE value="basic authentication" />
+    <MESSAGE value="authenticate only the api" />
+    <MESSAGE value="authenticate in memory authentication" />
+    <MESSAGE value="Basic Role based authentication: only allow developer to access the api" />
+    <MESSAGE value="offline db" />
+    <MESSAGE value="login page" />
+    <option name="LAST_COMMIT_MESSAGE" value="login page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
