@@ -3,6 +3,7 @@ package brian.big.accounts.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import static brian.big.accounts.services.AppUserPermissions.*;
 import static brian.big.accounts.services.AppUserRoles.*;
 
 @Configuration
@@ -30,7 +32,10 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable() //TODO: fix this
                 .authorizeRequests()
-                .antMatchers("/api/**").hasRole(DEVELOPER.name())
+                .antMatchers(HttpMethod.POST, "/api/**").hasAuthority(STUDENT_WRITE.name())
+                .antMatchers(HttpMethod.DELETE, "/api/**").hasAuthority(STUDENT_WRITE.name())
+                .antMatchers(HttpMethod.PUT, "/api/**").hasAuthority(STUDENT_WRITE.name())
+                .antMatchers("/api/**").hasAnyRole(ADMIN.name(), DEVELOPER.name())
                 .and()
                 .httpBasic();
     }
