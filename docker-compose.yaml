@@ -1,0 +1,25 @@
+version: '3'
+services:
+  application:
+    container_name: transcend-application
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    depends_on:
+      - database
+
+  database:
+    image: 'postgres:alpine'
+    container_name: transcend_postgres_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: "transcend"
+      POSTGRES_PASSWORD: "transcend"
+      POSTGRES_DB: "transcend"
+    ports:
+      - "5423:5432"
