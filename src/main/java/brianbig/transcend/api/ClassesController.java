@@ -1,7 +1,6 @@
 package brianbig.transcend.api;
 
-import brianbig.transcend.service.classes.ClassesService;
-import brianbig.transcend.service.classes.StreamsService;
+import brianbig.transcend.service.ClassesService;
 import brianbig.transcend.entities.Form;
 import brianbig.transcend.entities.Stream;
 import brianbig.transcend.entities.Student;
@@ -19,13 +18,11 @@ public class ClassesController {
 
     private final ClassesService classesService;
 
-    private final StreamsService streamsService;
 
     @Autowired
     @Lazy
-    public ClassesController(ClassesService classesService, StreamsService streamsService) {
+    public ClassesController(ClassesService classesService) {
         this.classesService = classesService;
-        this.streamsService = streamsService;
     }
 
     @GetMapping("/forms")
@@ -61,32 +58,32 @@ public class ClassesController {
 
     @GetMapping("/streams")
     public ResponseEntity<List<Stream>> allStreams() {
-        return streamsService.getAll();
+        return classesService.getAllStreams();
     }
 
     @GetMapping("/streams/{id}")
     public ResponseEntity<Stream> getStreamById(@PathVariable long id) {
-        return streamsService.getById(id);
+        return classesService.getStreamById(id);
     }
 
     @PostMapping("/streams")
     public ResponseEntity<Stream> add(@RequestBody Stream stream) {
-        Stream stream1 = streamsService.insert(stream);
+        Stream stream1 = classesService.addStream(stream);
         return new ResponseEntity<>(stream1, HttpStatus.OK);
     }
 
     @PutMapping("/streams")
     public Stream update(@RequestBody Stream stream) {
-        return streamsService.update(stream);
+        return classesService.update(stream);
     }
 
     @DeleteMapping("/streams/{id}")
     public ResponseEntity<String> deleteStream(@PathVariable long id) {
-        return streamsService.delete(id);
+        return classesService.delete(id);
     }
 
     @GetMapping("/streams/{id}/students")
     public ResponseEntity<List<Student>> streamStudents(@PathVariable int id) {
-        return streamsService.getStudentsInStream(id);
+        return classesService.getStudentsInStream(id);
     }
 }

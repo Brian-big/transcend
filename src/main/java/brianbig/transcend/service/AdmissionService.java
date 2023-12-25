@@ -1,7 +1,5 @@
 package brianbig.transcend.service;
 
-import brianbig.transcend.service.classes.ClassesService;
-import brianbig.transcend.service.classes.StreamsService;
 import brianbig.transcend.entities.Form;
 import brianbig.transcend.entities.Stream;
 import brianbig.transcend.entities.Student;
@@ -17,14 +15,12 @@ public class AdmissionService {
 
 
     private final StudentService studentService;
-    private final StreamsService streamsService;
     private final ClassesService classesService;
 
     @Autowired
     @Lazy
-    public AdmissionService(StudentService studentService, StreamsService streamsService, ClassesService classesService) {
+    public AdmissionService(StudentService studentService, ClassesService classesService) {
         this.studentService = studentService;
-        this.streamsService = streamsService;
         this.classesService = classesService;
     }
 
@@ -56,12 +52,12 @@ public class AdmissionService {
         if (nextForm == null)
             return null;
 
-        streamNext = streamsService.getStream(nextForm.getForm(), currentStream.getName());
+        streamNext = classesService.getStream(nextForm.getForm(), currentStream.getName());
         if (streamNext.isPresent()) {
             return streamNext.get();
         } else {
             Stream promotedStream = new Stream(nextForm, currentStream.getName());
-            Stream insertedStream = streamsService.insert(promotedStream);
+            Stream insertedStream = classesService.addStream(promotedStream);
             if (insertedStream == null) {
                 System.out.println("New stream creation failed");
                 return null;
