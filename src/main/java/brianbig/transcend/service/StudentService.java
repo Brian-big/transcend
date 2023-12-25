@@ -1,14 +1,13 @@
 package brianbig.transcend.service;
 
 import brianbig.transcend.api.request.StudentCreateRequest;
+import brianbig.transcend.api.request.StudentUpdateRequest;
 import brianbig.transcend.entities.Student;
 import brianbig.transcend.repository.StreamRepository;
 import brianbig.transcend.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,16 +22,22 @@ public class StudentService {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private static final int startAdmNo = 1000;
 
-    @Autowired
-    private StudentRepository studentRepository;
-    @Autowired
-    private StreamRepository streamRepository;
-    @Autowired
-    private AdmissionService admissionService;
 
-    public ResponseEntity<List<Student>> all() {
-        List<Student> students = studentRepository.findAll();
-        return new ResponseEntity<>(students, HttpStatus.OK);
+    private final StudentRepository studentRepository;
+
+    private final StreamRepository streamRepository;
+
+    private final AdmissionService admissionService;
+
+    @Autowired
+    public StudentService(StudentRepository studentRepository, StreamRepository streamRepository, AdmissionService admissionService) {
+        this.studentRepository = studentRepository;
+        this.streamRepository = streamRepository;
+        this.admissionService = admissionService;
+    }
+
+    public List<Student> all() {
+        return studentRepository.findAll();
     }
 
     public Optional<Student> admitStudent(StudentCreateRequest request) {
@@ -64,64 +69,57 @@ public class StudentService {
         return Optional.of(student);
     }
 
-    public Student getStudentById(String id) {
-        Optional<Student> student = studentRepository.findById(id);
-        return student.orElse(null);
+    public Optional<Student> getStudentById(String id) {
+        return studentRepository.findById(id);
     }
 
-    public Student getStudentByAdmissionNumber(int admNo) {
-        Optional<Student> student = studentRepository.findByAdmissionNumber(admNo);
-        return student.orElse(null);
+    public Optional<Student> getStudentByAdmissionNumber(int admNo) {
+        return studentRepository.findByAdmissionNumber(admNo);
     }
 
     @Transactional
-    public Student updateStudent(Student student) {
-        if (!Objects.equals(student.getFirstName(), "") &&
-                !Objects.equals(student.getLastName(), "") &&
-                student.getDateOfBirth() != null &&
-                student.getDateOfAdmission() != null
-        ) {
-            Student studentById = studentRepository.findById(student.getId())
-                    .orElseThrow(() -> new IllegalStateException(""));
+    public Optional<Student> updateStudent(StudentUpdateRequest request) {
 
-            if (!Objects.equals(studentById.getFirstName(), student.getFirstName())) {
-                studentById.setFirstName(student.getFirstName());
-            }
-            if (!Objects.equals(studentById.getLastName(), student.getLastName())) {
-                studentById.setLastName(student.getLastName());
-            }
-            if (!Objects.equals(studentById.getDateOfBirth(), student.getDateOfBirth())) {
-                studentById.setDateOfBirth(student.getDateOfBirth());
-            }
-            if (!Objects.equals(studentById.getDateOfAdmission(), student.getDateOfAdmission())) {
-                studentById.setDateOfAdmission(student.getDateOfAdmission());
-            }
-
+        var optionalStudent = studentRepository.findById(request.id());
+        if (optionalStudent.isEmpty()) {
+            throw new IllegalStateException("Could not find a student with given ID");
         }
-        return student;
+
+        final var student = optionalStudent.get();
+
+        if (!Objects.equals(student.getFirstName(), request.firstName())) {
+            optionalStudent.get().setFirstName(request.firstName());
+        }
+        if (!Objects.equals(student.getLastName(), request.lastName())) {
+            optionalStudent.get().setLastName(request.lastName());
+        }
+        if (!Objects.equals(optionalStudent.get().getDateOfBirth(), request.dateOfBirth())) {
+            optionalStudent.get().setDateOfBirth(request.dateOfBirth());
+        }
+        if (!Objects.equals(optionalStudent.get().getDateOfAdmission(), request.dateOfAdmission())) {
+            optionalStudent.get().setDateOfAdmission(request.dateOfAdmission());
+        }
+
+        optionalStudent.ifPresent(studentRepository::saveAndFlush);
+
+        return optionalStudent;
+
+
     }
 
-    public ResponseEntity<String> delete(String id) {
-        ResponseEntity<String> response;
-        Optional<Student> student = studentRepository.findById(id);
-        if (student.isPresent()) {
-            studentRepository.deleteById(id);
-            response = new ResponseEntity<>("OPERATION: Delete success!", HttpStatus.OK);
-        } else response = new ResponseEntity<>("Student with id not found!", HttpStatus.NOT_FOUND);
-        return response;
+    public void delete(String id) {
+        studentRepository.deleteById(id);
     }
 
-    public ResponseEntity<List<Student>> getStudentsInStream(int streamId) {
-        List<Student> students = studentRepository.studentsInStream(streamId);
-        return new ResponseEntity<>(students, HttpStatus.OK);
+    public List<Student> getStudentsInStream(String streamId) {
+        return studentRepository.studentsInStream(streamId);
     }
 
-    public ResponseEntity<List<Student>> getStudentsInForm(int form) {
-        List<Student> students = studentRepository.studentsInForm(form);
-        return new ResponseEntity<>(students, HttpStatus.OK);
+    public List<Student> getStudentsInForm(int form) {
+        return studentRepository.studentsInForm(form);
     }
 
-    public Student promote(String id) {
+    public Optional<Student> promote(String id) {
         return admissionService.promoteStudent(id);
     }
 }

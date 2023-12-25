@@ -1,13 +1,13 @@
 package brianbig.transcend.service;
 
+import brianbig.transcend.api.request.StreamCreateRequest;
+import brianbig.transcend.api.request.StreamUpdateRequest;
 import brianbig.transcend.entities.Stream;
+import brianbig.transcend.entities.Student;
 import brianbig.transcend.entities.enums.ClassForm;
 import brianbig.transcend.repository.StreamRepository;
-import brianbig.transcend.service.StudentService;
-import brianbig.transcend.entities.Student;
+import brianbig.transcend.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,55 +17,59 @@ import java.util.Optional;
 
 @Service
 public class ClassesService {
-    private final StudentService studentService;
+    private final StudentRepository studentRepository;
     private final StreamRepository streamRepository;
 
+
     @Autowired
-    public ClassesService(StudentService studentService, StreamRepository streamRepository) {
-        this.studentService = studentService;
+    public ClassesService(StudentRepository studentRepository, StreamRepository streamRepository) {
+        this.studentRepository = studentRepository;
         this.streamRepository = streamRepository;
     }
 
-    public ResponseEntity<List<Student>> studentPerForm(int form) {
-        return studentService.getStudentsInForm(form);
+
+    public List<Student> studentPerForm(int form) {
+        return studentRepository.studentsInForm(form);
     }
 
 
-    public ResponseEntity<List<Stream>> getAllStreams() {
-        List<Stream> streams = streamRepository.findAll();
-        return new ResponseEntity<>(streams, HttpStatus.OK);
+    public List<Stream> getAllStreams() {
+        return streamRepository.findAll();
     }
 
-    public ResponseEntity<Stream> getStreamById(String id) {
-        Optional<Stream> stream = streamRepository.findById(id);
-        return new ResponseEntity<>(stream.get(), HttpStatus.OK);
+    public Optional<Stream> getStreamById(String id) {
+        return streamRepository.findById(id);
     }
 
-    public Stream addStream(Stream stream) {
-        return streamRepository.save(stream);
+    public Optional<Stream> addStream(StreamCreateRequest request) {
+        var stream = new Stream(request.classForm(), request.name());
+        return Optional.of(streamRepository.save(stream));
     }
 
     @Transactional
-    public Stream update(Stream stream) {
-        Stream streamById = streamRepository.findById(stream.getId())
-                .orElseThrow(() -> new IllegalStateException(""));
-        if (!Objects.equals(streamById.getForm(), stream.getForm())) {
-            streamById.setForm(stream.getForm());
+    public Optional<Stream> update(StreamUpdateRequest stream) {
+        var optionalStream = streamRepository.findById(stream.id());
+        if (optionalStream.isEmpty()) {
+            throw new IllegalStateException("");
         }
-        if (!Objects.equals(streamById.getName(), stream.getName())) {
-            streamById.setName(stream.getName());
+        if (!Objects.equals(optionalStream.get().getForm(), stream.classForm())) {
+            optionalStream.get().setForm(stream.classForm());
+        }
+        if (!Objects.equals(optionalStream.get().getName(), stream.name())) {
+            optionalStream.get().setName(stream.name());
         }
 
-        return streamById;
+        optionalStream.ifPresent(streamRepository::saveAndFlush);
+        return optionalStream;
+
     }
 
-    public ResponseEntity<String> deleteStream(String id) {
+    public void deleteStream(String id) {
         streamRepository.deleteById(id);
-        return new ResponseEntity<>("Stream deleted", HttpStatus.OK);
     }
 
-    public ResponseEntity<List<Student>> getStudentsInStream(int streamId) {
-        return studentService.getStudentsInStream(streamId);
+    public List<Student> getStudentsInStream(String streamId) {
+        return studentRepository.studentsInStream(streamId);
 
     }
 

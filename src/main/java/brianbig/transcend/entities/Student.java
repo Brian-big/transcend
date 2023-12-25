@@ -21,7 +21,7 @@ public class Student extends BaseEntity {
 
     @Column(name = "admission_number", unique = true)
     private int admissionNumber;
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Stream stream;
     @Column(name = "date_of_admission")
     private LocalDate dateOfAdmission;

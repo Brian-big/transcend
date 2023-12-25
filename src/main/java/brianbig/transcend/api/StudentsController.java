@@ -2,8 +2,8 @@ package brianbig.transcend.api;
 
 import brianbig.transcend.api.dto.StudentDto;
 import brianbig.transcend.api.request.StudentCreateRequest;
+import brianbig.transcend.api.request.StudentUpdateRequest;
 import brianbig.transcend.service.StudentService;
-import brianbig.transcend.entities.Student;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController("studentsController")
 @RequestMapping("api/students")
@@ -29,26 +28,26 @@ public class StudentsController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Student>> all() {
-        return studentService.all();
+    public ResponseEntity<List<StudentDto>> all() {
+        var students = studentService.all().stream().map(StudentDto::from).toList();
+        return ResponseEntity.ok(students);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable String id) {
-        Student student = studentService.getStudentById(id);
-        return new ResponseEntity<>(student, HttpStatus.OK);
+    public ResponseEntity<StudentDto> getStudentById(@PathVariable String id) {
+        return studentService.getStudentById(id).map(StudentDto::from).map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping(params = {"adm"})
-    public ResponseEntity<Student> getStudentByAdmissionNumber(@RequestParam(name = "adm") int admNo) {
-        Student student = studentService.getStudentByAdmissionNumber(admNo);
-        return new ResponseEntity<>(student, HttpStatus.OK);
+    public ResponseEntity<StudentDto> getStudentByAdmissionNumber(@RequestParam(name = "adm") int admNo) {
+        return studentService.getStudentByAdmissionNumber(admNo).map(StudentDto::from).map(ResponseEntity::ok)
+                .orElse(ResponseEntity.noContent().build());
     }
 
     @PostMapping
     public ResponseEntity<StudentDto> add(@RequestBody StudentCreateRequest request) {
-
-        Optional<Student> optionalStudent = studentService.admitStudent(request);
+        var optionalStudent = studentService.admitStudent(request);
 
         return optionalStudent.map(StudentDto::from).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.of(
                 ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -57,33 +56,33 @@ public class StudentsController {
     }
 
     @PutMapping
-    public ResponseEntity<Student> edit(@RequestBody Student student) {
-        ResponseEntity<Student> response;
-        Student student1 = studentService.updateStudent(student);
-        if (student1 != null) {
-            response = new ResponseEntity<>(student1, HttpStatus.OK);
-        } else response = new ResponseEntity<>(student, HttpStatus.INTERNAL_SERVER_ERROR);
-        return response;
+    public ResponseEntity<StudentDto> edit(@RequestBody StudentUpdateRequest request) {
+        return studentService.updateStudent(request).map(StudentDto::from).map(ResponseEntity::ok)
+                .orElse(ResponseEntity.of(ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR)).build());
+
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable String id) {
-        return studentService.delete(id);
+        studentService.delete(id);
+        return ResponseEntity.ok("item deleted");
     }
 
     @GetMapping(params = {"stream"})
-    public ResponseEntity<List<Student>> studentsInStream(@RequestParam(name = "stream") int streamId) {
-        return studentService.getStudentsInStream(streamId);
+    public ResponseEntity<List<StudentDto>> studentsInStream(@RequestParam(name = "stream") String streamId) {
+        var students = studentService.getStudentsInStream(streamId).stream().map(StudentDto::from).toList();
+        return ResponseEntity.ok(students);
     }
 
     @GetMapping(params = {"form"})
-    public ResponseEntity<List<Student>> studentsPerForm(@RequestParam(name = "form") int form) {
-        return studentService.getStudentsInForm(form);
+    public ResponseEntity<List<StudentDto>> studentsPerForm(@RequestParam(name = "form") int form) {
+        var students = studentService.getStudentsInForm(form).stream().map(StudentDto::from).toList();
+        return ResponseEntity.ok(students);
     }
 
     @GetMapping("/{id}/promote")
-    public ResponseEntity<Student> promote(@PathVariable String id) {
-        Student student = studentService.promote(id);
-        return new ResponseEntity<>(student, HttpStatus.OK);
+    public ResponseEntity<StudentDto> promote(@PathVariable String id) {
+        return studentService.promote(id).map(StudentDto::from).map(ResponseEntity::ok)
+                .orElse(ResponseEntity.of(ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR)).build());
     }
 }

@@ -3,6 +3,10 @@ package brianbig.transcend.service;
 import brianbig.transcend.entities.Stream;
 import brianbig.transcend.entities.Student;
 import brianbig.transcend.entities.enums.ClassForm;
+import brianbig.transcend.repository.StreamRepository;
+import brianbig.transcend.repository.StudentRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -13,56 +17,49 @@ import java.util.Optional;
 @Service
 public class AdmissionService {
 
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
-    private final StudentService studentService;
-    private final ClassesService classesService;
+    private final StudentRepository studentRepository;
+    private final StreamRepository streamRepository;
 
     @Autowired
     @Lazy
-    public AdmissionService(StudentService studentService, ClassesService classesService) {
-        this.studentService = studentService;
-        this.classesService = classesService;
+    public AdmissionService(StudentRepository studentRepository, StreamRepository streamRepository) {
+
+        this.studentRepository = studentRepository;
+        this.streamRepository = streamRepository;
     }
 
     @Transactional
-    public Student promoteStudent(String id) {
-        Student student = studentService.getStudentById(id);
-        if (student == null) {
-            System.out.println("Student with given admission number does not exist");
-            return null;
+    public Optional<Student> promoteStudent(String id) {
+        var optionalStudent = studentRepository.findById(id);
+        if (optionalStudent.isEmpty()) {
+            log.debug("Student with ID: {} does not exist", id);
+            throw new IllegalStateException("Student with given id does not exist");
         }
 
-        Stream currentStream = student.getStream();
-        if (currentStream == null)
-            return null;
-        Stream nextStream = handleStreamPromotion(currentStream);
+        Stream nextStream = handleStreamPromotion(optionalStudent.get().getStream());
 
-        student.setStream(nextStream);
-        Student student1 = studentService.updateStudent(student);
-        if (student1 == null) {
-            System.out.println("Promote student to " + student.getStream() + "fail");
-            return null;
-        }
-        return student1;
+        optionalStudent.get().setStream(nextStream);
+        optionalStudent.ifPresent(studentRepository::saveAndFlush);
+        return optionalStudent;
     }
 
     private Stream handleStreamPromotion(Stream currentStream) {
         ClassForm nextForm = getNextForm(currentStream.getForm());
         Optional<Stream> streamNext;
+
+        //todo: recheck this to avoid possible null pointer exceptions
         if (nextForm == null)
             return null;
 
-        streamNext = classesService.getStream(nextForm.name(), currentStream.getName());
+        streamNext = streamRepository.findByFormAndNameIgnoreCase(nextForm, currentStream.getName());
         if (streamNext.isPresent()) {
             return streamNext.get();
         } else {
             Stream promotedStream = new Stream(nextForm, currentStream.getName());
-            Stream insertedStream = classesService.addStream(promotedStream);
-            if (insertedStream == null) {
-                System.out.println("New stream creation failed");
-                return null;
-            }
-            return insertedStream;
+            promotedStream = streamRepository.saveAndFlush(promotedStream);
+            return promotedStream;
         }
 
     }

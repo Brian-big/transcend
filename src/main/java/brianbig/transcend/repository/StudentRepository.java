@@ -13,7 +13,7 @@ public interface StudentRepository extends JpaRepository<Student, String> {
     Optional<Student> findByAdmissionNumber(int admissionNumber);
 
     @Query("select s from Student s where s.stream.id = ?1")
-    List<Student> studentsInStream(long id);
+    List<Student> studentsInStream(String id);
 
     @Query("select s from Student s where s.stream.form = ?1")
     List<Student> studentsInForm(int form);

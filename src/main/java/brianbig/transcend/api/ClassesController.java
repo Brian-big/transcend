@@ -1,5 +1,9 @@
 package brianbig.transcend.api;
 
+import brianbig.transcend.api.dto.StreamDto;
+import brianbig.transcend.api.dto.StudentDto;
+import brianbig.transcend.api.request.StreamCreateRequest;
+import brianbig.transcend.api.request.StreamUpdateRequest;
 import brianbig.transcend.service.ClassesService;
 import brianbig.transcend.entities.Stream;
 import brianbig.transcend.entities.Student;
@@ -27,38 +31,46 @@ public class ClassesController {
     }
 
     @GetMapping("/forms/{id}/students")
-    public ResponseEntity<List<Student>> formStudents(@PathVariable int id) {
-        return classesService.studentPerForm(id);
+    public ResponseEntity<List<StudentDto>> formStudents(@PathVariable int id) {
+        var students = classesService.studentPerForm(id).stream().map(StudentDto::from).toList();
+        return ResponseEntity.ok(students);
     }
 
     @GetMapping("/streams")
-    public ResponseEntity<List<Stream>> allStreams() {
-        return classesService.getAllStreams();
+    public ResponseEntity<List<StreamDto>> allStreams() {
+        var allStreams = classesService.getAllStreams().stream().map(StreamDto::from).toList();
+        return ResponseEntity.ok(allStreams);
     }
 
     @GetMapping("/streams/{id}")
-    public ResponseEntity<Stream> getStreamById(@PathVariable String id) {
-        return classesService.getStreamById(id);
+    public ResponseEntity<StreamDto> getStreamById(@PathVariable String id) {
+        return classesService.getStreamById(id).map(StreamDto::from).map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/streams")
-    public ResponseEntity<Stream> add(@RequestBody Stream stream) {
-        Stream stream1 = classesService.addStream(stream);
-        return new ResponseEntity<>(stream1, HttpStatus.OK);
+    public ResponseEntity<StreamDto> add(@RequestBody StreamCreateRequest request) {
+        return classesService.addStream(request).map(StreamDto::from).map(ResponseEntity::ok)
+                .orElse(ResponseEntity.noContent().build());
+
     }
 
     @PutMapping("/streams")
-    public Stream update(@RequestBody Stream stream) {
-        return classesService.update(stream);
+    public ResponseEntity<StreamDto> update(@RequestBody StreamUpdateRequest request) {
+        return classesService.update(request).map(StreamDto::from).map(ResponseEntity::ok).orElse(
+                ResponseEntity.noContent().build()
+        );
     }
 
     @DeleteMapping("/streams/{id}")
     public ResponseEntity<String> deleteStream(@PathVariable String id) {
-        return classesService.deleteStream(id);
+        classesService.deleteStream(id);
+        return ResponseEntity.ok("Stream deleted");
     }
 
     @GetMapping("/streams/{id}/students")
-    public ResponseEntity<List<Student>> streamStudents(@PathVariable int id) {
-        return classesService.getStudentsInStream(id);
+    public ResponseEntity<List<StudentDto>> streamStudents(@PathVariable String id) {
+        var students = classesService.getStudentsInStream(id).stream().map(StudentDto::from).toList();
+        return ResponseEntity.ok(students);
     }
 }
