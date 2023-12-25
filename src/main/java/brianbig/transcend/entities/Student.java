@@ -1,23 +1,18 @@
 package brianbig.transcend.entities;
 
-import brianbig.transcend.entities.Stream;
 import jakarta.persistence.*;
 
-
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 
 @Entity
-@Table(name = "student")
-public class Student{
+public class Student extends BaseEntity {
 
-    @Id
-    @GeneratedValue
-    private long id;
     @Column(name = "first_name", nullable = false)
     private String firstName;
-    @Column(name = "surname", nullable = false)
-    private String surname;
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
 
@@ -28,40 +23,33 @@ public class Student{
     private int admissionNumber;
     @ManyToOne
     private Stream stream;
-    @Column(name="date_of_admission")
+    @Column(name = "date_of_admission")
     private LocalDate dateOfAdmission;
 
+    @Column
+    private User userAccount;
 
     public Student() {
     }
 
-    public Student(String firstName, String surname, LocalDate dateOfBirth, int admissionNumber, Stream stream, LocalDate dateOfAdmission) {
+    public Student(String id, LocalDateTime createdAt, LocalDateTime updatedAt, String firstName, String lastName, LocalDate dateOfBirth, Integer age, int admissionNumber, Stream stream, LocalDate dateOfAdmission, User userAccount) {
+        super(id, createdAt, updatedAt);
         this.firstName = firstName;
-        this.surname = surname;
+        this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
+        this.age = age;
         this.admissionNumber = admissionNumber;
         this.stream = stream;
         this.dateOfAdmission = dateOfAdmission;
+        this.userAccount = userAccount;
     }
 
-
-
-    public Student(long id, String firstName, String surname, LocalDate dateOfBirth, int admissionNumber, Stream stream, LocalDate dateOfAdmission) {
-        this.id = id;
-        this.firstName = firstName;
-        this.surname = surname;
-        this.dateOfBirth = dateOfBirth;
-        this.admissionNumber = admissionNumber;
-        this.stream = stream;
-        this.dateOfAdmission = dateOfAdmission;
+    public Student(String firstName, String lastName, LocalDate dateOfBirth, int admissionNumber, Stream stream, LocalDate dateOfAdmission, User userAccount) {
+        this(null, null, null, firstName, lastName, dateOfBirth, null, admissionNumber, stream, dateOfAdmission, userAccount);
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public Student(String firstName, String lastName, LocalDate dateOfBirth, int admissionNumber, Stream stream, LocalDate dateOfAdmission) {
+        this(firstName, lastName, dateOfBirth, admissionNumber, stream, dateOfAdmission, null);
     }
 
     public String getFirstName() {
@@ -72,12 +60,12 @@ public class Student{
         this.firstName = firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public LocalDate getDateOfBirth() {
@@ -112,7 +100,15 @@ public class Student{
         return dateOfAdmission;
     }
 
-    public Integer getAge(){
+    public User getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(User userAccount) {
+        this.userAccount = userAccount;
+    }
+
+    public Integer getAge() {
         return Period.between(this.dateOfBirth, LocalDate.now()).getYears();
     }
 

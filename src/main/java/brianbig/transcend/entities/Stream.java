@@ -1,44 +1,37 @@
 package brianbig.transcend.entities;
 
+import brianbig.transcend.entities.enums.ClassForm;
 import jakarta.persistence.*;
 
-@Entity
-@Table
-public class Stream {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    @ManyToOne
-    private Form form;
-    @Column(name="name")
+import java.time.LocalDateTime;
+
+@Entity(name = "form_stream")
+public class Stream extends BaseEntity {
+
+    @Enumerated(EnumType.STRING)
+    private ClassForm form;
+    @Column(name = "name")
     private String name;
+
 
     public Stream() {
     }
 
-    public Stream(int id, Form form, String name) {
-        this.id = id;
+    public Stream(String id, LocalDateTime createdAt, LocalDateTime updatedAt, ClassForm form, String name) {
+        super(id, createdAt, updatedAt);
         this.form = form;
         this.name = name;
     }
 
-    public Stream(Form form, String name) {
-        this.form = form;
-        this.name = name;
+    public Stream(ClassForm form, String name) {
+        this(null, null, null, form, name);
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Form getForm() {
+    public ClassForm getForm() {
         return form;
     }
 
-    public void setForm(Form form) {
+    public void setForm(ClassForm form) {
         this.form = form;
     }
 

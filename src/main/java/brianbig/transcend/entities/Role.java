@@ -1,6 +1,6 @@
 package brianbig.transcend.entities;
 
-import brianbig.transcend.entities.enums.AppUserRole;
+import brianbig.transcend.entities.enums.RoleName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -12,7 +12,7 @@ import java.util.Set;
 public class Role extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(unique = true)
-    private AppUserRole roleName;
+    private RoleName roleName;
     @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "roles", fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<User> usersWithRole;
@@ -21,26 +21,26 @@ public class Role extends BaseEntity {
     }
 
 
-    public Role(String id, LocalDateTime createdAt, LocalDateTime updatedAt, AppUserRole roleName, Set<User> usersWithRole) {
+    public Role(String id, LocalDateTime createdAt, LocalDateTime updatedAt, RoleName roleName, Set<User> usersWithRole) {
         super(id, createdAt, updatedAt);
         this.roleName = roleName;
         this.usersWithRole = usersWithRole;
     }
 
-    public Role(AppUserRole roleName, Set<User> usersWithRole) {
+    public Role(RoleName roleName, Set<User> usersWithRole) {
         this(null, null, null, roleName, usersWithRole);
     }
 
-    public Role(AppUserRole roleName) {
+    public Role(RoleName roleName) {
         this(roleName, null);
     }
 
 
-    public AppUserRole getRoleName() {
+    public RoleName getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(AppUserRole roleName) {
+    public void setRoleName(RoleName roleName) {
         this.roleName = roleName;
     }
 
