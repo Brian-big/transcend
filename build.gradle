@@ -6,33 +6,49 @@
 
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.1.2'
+    id 'io.spring.dependency-management' version '1.1.2'
+
     id 'maven-publish'
 }
 
 repositories {
-    mavenLocal()
-    maven {
-        url = uri('https://repo.maven.apache.org/maven2/')
-    }
+    mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.1'
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.1'
-    implementation 'org.springframework.boot:spring-boot-starter-security:2.7.0'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.7.0'
-    implementation 'com.google.guava:guava:31.1-jre'
-    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
-    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
-    runtimeOnly 'org.postgresql:postgresql:42.3.6'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.1'
-    testImplementation 'org.springframework.security:spring-security-test:5.7.2'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // jwt
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'com.auth0:java-jwt:4.2.1'
+    // xid
+    implementation 'com.github.0xshamil:java-xid:1.0.0'
+    // springdoc
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+
+    // javax xml bind
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.7'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.h2database:h2'
 }
 
 group = 'brian.big'
 version = '1.0-SNAPSHOT'
 description = 'Transcend'
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java {
+    sourceCompatibility = '17'
+}
 
 publishing {
     publications {
