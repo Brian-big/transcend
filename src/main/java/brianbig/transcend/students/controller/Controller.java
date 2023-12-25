@@ -1,7 +1,7 @@
 package brianbig.transcend.students.controller;
 
 import brianbig.transcend.students.domain.StudentService;
-import brianbig.transcend.students.models.Student;
+import brianbig.transcend.entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
-package brianbig.transcend.students.models;
+package brianbig.transcend.entities;
 
-import brianbig.transcend.classes.models.Stream;
+import brianbig.transcend.entities.Stream;
 import jakarta.persistence.*;
 
 

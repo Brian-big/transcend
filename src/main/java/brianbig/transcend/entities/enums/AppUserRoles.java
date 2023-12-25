@@ -1,10 +1,10 @@
-package brianbig.transcend.accounts.services;
+package brianbig.transcend.entities.enums;
 
 import com.google.common.collect.Sets;
 
 import java.util.Set;
 
-import static brianbig.transcend.accounts.services.AppUserPermissions.*;
+import static brianbig.transcend.entities.enums.AppUserPermissions.*;
 
 public enum AppUserRoles {
     ADMIN(Sets.newHashSet(STUDENT_READ, STUDENT_WRITE)),

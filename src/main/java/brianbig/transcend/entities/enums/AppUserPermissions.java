@@ -1,4 +1,4 @@
-package brianbig.transcend.accounts.services;
+package brianbig.transcend.entities.enums;
 
 public enum AppUserPermissions {
     STUDENT_READ("student:read"),

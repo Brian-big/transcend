@@ -1,6 +1,6 @@
 package brianbig.transcend.classes.repository;
 
-import brianbig.transcend.classes.models.Stream;
+import brianbig.transcend.entities.Stream;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

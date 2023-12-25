@@ -1,4 +1,4 @@
-package brianbig.transcend.classes.models;
+package brianbig.transcend.entities;
 
 import jakarta.persistence.*;
 

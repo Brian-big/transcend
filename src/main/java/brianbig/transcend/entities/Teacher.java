@@ -1,11 +1,11 @@
-package brianbig.transcend.students.models;
+package brianbig.transcend.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="parent")
-public class Guardian {
+@Table
+public class Teacher {
     @Id
     @GeneratedValue
     private long id;
@@ -15,11 +15,8 @@ public class Guardian {
     private String surname;
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
-    @Column(name = "national_id")
-    private int nationalId;
-    @Column(name = "occupation")
-    private String occupation;
-    @Column(name = "telephone")
-    private String telephone;
+
+    @Column(name = "employee_number", unique = true)
+    private String employeeNumber;
 
 }

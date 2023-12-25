@@ -2,9 +2,9 @@ package brianbig.transcend.classes.controller;
 
 import brianbig.transcend.classes.domain.ClassesService;
 import brianbig.transcend.classes.domain.StreamsService;
-import brianbig.transcend.classes.models.Form;
-import brianbig.transcend.classes.models.Stream;
-import brianbig.transcend.students.models.Student;
+import brianbig.transcend.entities.Form;
+import brianbig.transcend.entities.Stream;
+import brianbig.transcend.entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
