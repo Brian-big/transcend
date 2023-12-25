@@ -46,7 +46,7 @@ dependencies {
     testImplementation 'com.h2database:h2'
 }
 
-group = 'brian.big'
+group = 'brianbig.transcend'
 version = '1.0-SNAPSHOT'
 description = 'Transcend'
 java {
