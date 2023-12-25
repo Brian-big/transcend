@@ -1,6 +1,6 @@
-package brianbig.transcend.students.domain;
+package brianbig.transcend.students;
 
-import brianbig.transcend.admissions.domain.AdmissionService;
+import brianbig.transcend.admissions.AdmissionService;
 import brianbig.transcend.entities.Student;
 import brianbig.transcend.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
-package brianbig.transcend.classes.domain;
+package brianbig.transcend.classes;
 
 import brianbig.transcend.entities.Stream;
 import brianbig.transcend.repository.StreamRepository;
-import brianbig.transcend.students.domain.StudentService;
+import brianbig.transcend.students.StudentService;
 import brianbig.transcend.entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

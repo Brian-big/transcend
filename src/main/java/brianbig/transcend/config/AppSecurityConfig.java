@@ -1,4 +1,4 @@
-package brianbig.transcend.accounts.services;
+package brianbig.transcend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

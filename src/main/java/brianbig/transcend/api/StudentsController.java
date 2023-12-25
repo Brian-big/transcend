@@ -1,6 +1,6 @@
-package brianbig.transcend.students.controller;
+package brianbig.transcend.api;
 
-import brianbig.transcend.students.domain.StudentService;
+import brianbig.transcend.students.StudentService;
 import brianbig.transcend.entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController("studentsController")
 @RequestMapping("api/students")
-public class Controller {
+public class StudentsController {
 
     private final StudentService studentService;
 
     @Autowired
     @Lazy
-    public Controller(StudentService studentService) {
+    public StudentsController(StudentService studentService) {
         this.studentService = studentService;
     }
 

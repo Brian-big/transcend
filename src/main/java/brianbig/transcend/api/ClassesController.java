@@ -1,7 +1,7 @@
-package brianbig.transcend.classes.controller;
+package brianbig.transcend.api;
 
-import brianbig.transcend.classes.domain.ClassesService;
-import brianbig.transcend.classes.domain.StreamsService;
+import brianbig.transcend.classes.ClassesService;
+import brianbig.transcend.classes.StreamsService;
 import brianbig.transcend.entities.Form;
 import brianbig.transcend.entities.Stream;
 import brianbig.transcend.entities.Student;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController("classesController")
 @RequestMapping("api/classes")
-public class Controller {
+public class ClassesController {
 
     private final ClassesService classesService;
 
@@ -23,7 +23,7 @@ public class Controller {
 
     @Autowired
     @Lazy
-    public Controller(ClassesService classesService, StreamsService streamsService) {
+    public ClassesController(ClassesService classesService, StreamsService streamsService) {
         this.classesService = classesService;
         this.streamsService = streamsService;
     }
