@@ -16,44 +16,51 @@ import java.util.Optional;
 
 @Service
 public class ClassesService {
+
+    private final FormRepository formRepository;
+
+    private final StudentService studentService;
+
     @Autowired
-    private FormRepository formRepository;
-    @Autowired
-    private StudentService studentService;
+    public ClassesService(FormRepository formRepository, StudentService studentService) {
+        this.formRepository = formRepository;
+        this.studentService = studentService;
+    }
 
 
-    public ResponseEntity<List<Form>> getAll(){
+    public ResponseEntity<List<Form>> getAll() {
         List<Form> forms = formRepository.findAll();
         return new ResponseEntity<>(forms, HttpStatus.OK);
     }
-    public ResponseEntity<Form> getFormById(long id){
+
+    public ResponseEntity<Form> getFormById(long id) {
         Optional<Form> form = formRepository.findById(id);
         return new ResponseEntity<>(form.get(), HttpStatus.OK);
     }
 
-    public Form insert(Form form){
+    public Form insert(Form form) {
         return formRepository.save(form);
     }
 
     @Transactional
-    public Form update(Form form){
+    public Form update(Form form) {
         Form formById = formRepository.findById(form.getId())
                 .orElseThrow(() -> new IllegalStateException(""));
-        if (!Objects.equals(formById.getForm(), form.getForm())){
+        if (!Objects.equals(formById.getForm(), form.getForm())) {
             formById.setForm(form.getForm());
         }
-        if (!Objects.equals(formById.getVerboseName(), form.getVerboseName())){
+        if (!Objects.equals(formById.getVerboseName(), form.getVerboseName())) {
             formById.setVerboseName(form.getVerboseName());
         }
         return formById;
     }
 
-    public ResponseEntity<String> delete(long id){
+    public ResponseEntity<String> delete(long id) {
         formRepository.deleteById(id);
         return new ResponseEntity<>("Form Deleted", HttpStatus.OK);
     }
 
-    public ResponseEntity<List<Student>> studentPerForm(int form){
+    public ResponseEntity<List<Student>> studentPerForm(int form) {
         return studentService.getStudentsInForm(form);
     }
 
