@@ -52,6 +52,21 @@ public class Student extends BaseEntity {
         this(firstName, lastName, dateOfBirth, admissionNumber, stream, dateOfAdmission, null);
     }
 
+    public Student(String firstName, String lastName, LocalDate dateOfBirth, int admissionNumber, Stream stream) {
+        this(firstName, lastName, dateOfBirth, admissionNumber, stream, null);
+    }
+
+    @Override
+    protected void prePersist() {
+        super.prePersist();
+        if (getDateOfBirth() == null) {
+            setDateOfBirth(LocalDate.of(2000, 1, 1));
+        }
+        if (getDateOfAdmission() == null) {
+            setDateOfAdmission(LocalDate.now());
+        }
+    }
+
     public String getFirstName() {
         return firstName;
     }

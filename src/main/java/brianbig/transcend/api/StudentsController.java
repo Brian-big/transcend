@@ -1,15 +1,19 @@
 package brianbig.transcend.api;
 
+import brianbig.transcend.api.dto.StudentDto;
+import brianbig.transcend.api.request.StudentCreateRequest;
 import brianbig.transcend.service.StudentService;
 import brianbig.transcend.entities.Student;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController("studentsController")
 @RequestMapping("api/students")
@@ -42,14 +46,13 @@ public class StudentsController {
     }
 
     @PostMapping
-    public ResponseEntity<Student> add(@RequestBody Student student) {
-        ResponseEntity<Student> response;
-        if (studentService.admitStudent(student) != null) {
-            response = new ResponseEntity<>(student, HttpStatus.CREATED);
-        } else {
-            response = new ResponseEntity<>(student, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return response;
+    public ResponseEntity<StudentDto> add(@RequestBody StudentCreateRequest request) {
+
+        Optional<Student> optionalStudent = studentService.admitStudent(request);
+
+        return optionalStudent.map(StudentDto::from).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.of(
+                ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+        ).build());
 
     }
 

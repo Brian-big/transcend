@@ -1,14 +1,17 @@
 package brianbig.transcend.service;
 
+import brianbig.transcend.api.request.StudentCreateRequest;
 import brianbig.transcend.entities.Student;
+import brianbig.transcend.repository.StreamRepository;
 import brianbig.transcend.repository.StudentRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -17,78 +20,80 @@ import java.util.Optional;
 @Service("studentService")
 public class StudentService {
 
+    private final Logger log = LoggerFactory.getLogger(getClass());
     private static final int startAdmNo = 1000;
 
     @Autowired
-    private StudentRepository repo;
+    private StudentRepository studentRepository;
+    @Autowired
+    private StreamRepository streamRepository;
     @Autowired
     private AdmissionService admissionService;
 
-    public ResponseEntity<List<Student>> all(){
-        List<Student> students = repo.findAll();
+    public ResponseEntity<List<Student>> all() {
+        List<Student> students = studentRepository.findAll();
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
-    public Student admitStudent(Student student){
-        Student lastStudent = repo.findTopByOrderByAdmissionNumberDesc();
+    public Optional<Student> admitStudent(StudentCreateRequest request) {
+        Student lastStudent = studentRepository.findTopByOrderByAdmissionNumberDesc();
         int lastAdmNo;
-        if (lastStudent != null){
+        if (lastStudent != null) {
             lastAdmNo = lastStudent.getAdmissionNumber();
-        }
-        else lastAdmNo = startAdmNo;
-        System.out.println("DEBUG:INSERT ------- last admission Number: "+ lastAdmNo);
+        } else lastAdmNo = startAdmNo;
+        log.debug("------- last admission Number: {}", lastAdmNo);
         lastAdmNo++;
-        System.out.println("DEBUG:INSERT ------- new admission Number: "+ lastAdmNo);
-        student.setAdmissionNumber(lastAdmNo);
+        log.debug("------- new admission Number: {}", lastAdmNo);
 
-        Optional<Student> studentByAdmNo = repo.
-                findByAdmissionNumber(student.getAdmissionNumber());
-        if (studentByAdmNo.isPresent()){
+        Optional<Student> studentByAdmNo = studentRepository.
+                findByAdmissionNumber(lastAdmNo);
+        if (studentByAdmNo.isPresent()) {
             throw new IllegalStateException("admission number exists");
         }
+        var optionalStream = streamRepository.findById(request.streamId());
 
-        if (student.getDateOfBirth() == null){
-            student.setDateOfBirth(LocalDate.of(2000, 1, 1));
+        if (optionalStream.isEmpty()) {
+            log.debug("Stream with id: {} could not be found", request.streamId());
+            throw new IllegalStateException("Stream with given id does not exist");
         }
-        if (student.getDateOfAdmission() == null){
-            student.setDateOfAdmission(LocalDate.now());
-        }
 
-        repo.save(student);
+        var student = new Student(request.firstName(), request.lastName(), request.dateOfBirth(), lastAdmNo, optionalStream.get());
 
-        return student;
+        student = studentRepository.saveAndFlush(student);
+
+        return Optional.of(student);
     }
 
-    public Student getStudentById(String id){
-        Optional<Student> student = repo.findById(id);
+    public Student getStudentById(String id) {
+        Optional<Student> student = studentRepository.findById(id);
         return student.orElse(null);
     }
 
-    public Student getStudentByAdmissionNumber(int admNo){
-        Optional<Student> student = repo.findByAdmissionNumber(admNo);
+    public Student getStudentByAdmissionNumber(int admNo) {
+        Optional<Student> student = studentRepository.findByAdmissionNumber(admNo);
         return student.orElse(null);
     }
 
     @Transactional
-    public Student updateStudent(Student student){
+    public Student updateStudent(Student student) {
         if (!Objects.equals(student.getFirstName(), "") &&
                 !Objects.equals(student.getLastName(), "") &&
                 student.getDateOfBirth() != null &&
-                student.getDateOfAdmission() !=null
-        ){
-            Student studentById = repo.findById(student.getId())
+                student.getDateOfAdmission() != null
+        ) {
+            Student studentById = studentRepository.findById(student.getId())
                     .orElseThrow(() -> new IllegalStateException(""));
 
-            if (!Objects.equals(studentById.getFirstName(), student.getFirstName())){
+            if (!Objects.equals(studentById.getFirstName(), student.getFirstName())) {
                 studentById.setFirstName(student.getFirstName());
             }
-            if (!Objects.equals(studentById.getLastName(), student.getLastName())){
+            if (!Objects.equals(studentById.getLastName(), student.getLastName())) {
                 studentById.setLastName(student.getLastName());
             }
-            if (!Objects.equals(studentById.getDateOfBirth(), student.getDateOfBirth())){
+            if (!Objects.equals(studentById.getDateOfBirth(), student.getDateOfBirth())) {
                 studentById.setDateOfBirth(student.getDateOfBirth());
             }
-            if (!Objects.equals(studentById.getDateOfAdmission(), student.getDateOfAdmission())){
+            if (!Objects.equals(studentById.getDateOfAdmission(), student.getDateOfAdmission())) {
                 studentById.setDateOfAdmission(student.getDateOfAdmission());
             }
 
@@ -98,26 +103,25 @@ public class StudentService {
 
     public ResponseEntity<String> delete(String id) {
         ResponseEntity<String> response;
-        Optional<Student> student = repo.findById(id);
-        if (student.isPresent()){
-            repo.deleteById(id);
+        Optional<Student> student = studentRepository.findById(id);
+        if (student.isPresent()) {
+            studentRepository.deleteById(id);
             response = new ResponseEntity<>("OPERATION: Delete success!", HttpStatus.OK);
-        }
-        else response = new ResponseEntity<>("Student with id not found!", HttpStatus.NOT_FOUND);
+        } else response = new ResponseEntity<>("Student with id not found!", HttpStatus.NOT_FOUND);
         return response;
     }
 
-    public ResponseEntity<List<Student>> getStudentsInStream(int streamId){
-        List<Student> students = repo.studentsInStream(streamId);
+    public ResponseEntity<List<Student>> getStudentsInStream(int streamId) {
+        List<Student> students = studentRepository.studentsInStream(streamId);
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
-    public ResponseEntity<List<Student>> getStudentsInForm(int form){
-        List<Student> students = repo.studentsInForm(form);
+    public ResponseEntity<List<Student>> getStudentsInForm(int form) {
+        List<Student> students = studentRepository.studentsInForm(form);
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
-    public Student promote(String id){
+    public Student promote(String id) {
         return admissionService.promoteStudent(id);
     }
 }
