@@ -1,6 +1,6 @@
 package brian.big.staff.models;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
