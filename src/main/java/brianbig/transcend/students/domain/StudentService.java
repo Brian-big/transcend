@@ -2,7 +2,7 @@ package brianbig.transcend.students.domain;
 
 import brianbig.transcend.admissions.domain.AdmissionService;
 import brianbig.transcend.entities.Student;
-import brianbig.transcend.students.repository.StudentRepository;
+import brianbig.transcend.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

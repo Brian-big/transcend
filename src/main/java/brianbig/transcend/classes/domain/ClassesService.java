@@ -1,7 +1,7 @@
 package brianbig.transcend.classes.domain;
 
 import brianbig.transcend.entities.Form;
-import brianbig.transcend.classes.repository.FormRepository;
+import brianbig.transcend.repository.FormRepository;
 import brianbig.transcend.students.domain.StudentService;
 import brianbig.transcend.entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;

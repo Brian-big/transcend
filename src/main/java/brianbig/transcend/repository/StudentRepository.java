@@ -1,4 +1,4 @@
-package brianbig.transcend.students.repository;
+package brianbig.transcend.repository;
 
 import brianbig.transcend.entities.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
