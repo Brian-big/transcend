@@ -2,6 +2,7 @@ package brianbig.transcend.api;
 
 import brianbig.transcend.service.StudentService;
 import brianbig.transcend.entities.Student;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController("studentsController")
 @RequestMapping("api/students")
+@Tag(name = "Students")
 public class StudentsController {
 
     private final StudentService studentService;

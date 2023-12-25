@@ -4,6 +4,7 @@ import brianbig.transcend.service.ClassesService;
 import brianbig.transcend.entities.Form;
 import brianbig.transcend.entities.Stream;
 import brianbig.transcend.entities.Student;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController("classesController")
 @RequestMapping("api/classes")
+@Tag(name = "Classes & Streams")
 public class ClassesController {
 
     private final ClassesService classesService;
