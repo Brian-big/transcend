@@ -1,10 +1,9 @@
-package brianbig.transcend.admissions;
+package brianbig.transcend.service;
 
-import brianbig.transcend.classes.ClassesService;
-import brianbig.transcend.classes.StreamsService;
+import brianbig.transcend.service.classes.ClassesService;
+import brianbig.transcend.service.classes.StreamsService;
 import brianbig.transcend.entities.Form;
 import brianbig.transcend.entities.Stream;
-import brianbig.transcend.students.StudentService;
 import brianbig.transcend.entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;

@@ -1,6 +1,5 @@
-package brianbig.transcend.students;
+package brianbig.transcend.service;
 
-import brianbig.transcend.admissions.AdmissionService;
 import brianbig.transcend.entities.Student;
 import brianbig.transcend.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;

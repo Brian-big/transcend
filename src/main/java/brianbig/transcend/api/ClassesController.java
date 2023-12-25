@@ -1,7 +1,7 @@
 package brianbig.transcend.api;
 
-import brianbig.transcend.classes.ClassesService;
-import brianbig.transcend.classes.StreamsService;
+import brianbig.transcend.service.classes.ClassesService;
+import brianbig.transcend.service.classes.StreamsService;
 import brianbig.transcend.entities.Form;
 import brianbig.transcend.entities.Stream;
 import brianbig.transcend.entities.Student;

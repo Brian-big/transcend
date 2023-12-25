@@ -1,6 +1,6 @@
 package brianbig.transcend.api;
 
-import brianbig.transcend.students.StudentService;
+import brianbig.transcend.service.StudentService;
 import brianbig.transcend.entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
