@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
-public interface StudentRepository extends JpaRepository<Student, Long> {
+public interface StudentRepository extends JpaRepository<Student, String> {
     Student findTopByOrderByAdmissionNumberDesc();
 
     Optional<Student> findByAdmissionNumber(int admissionNumber);
@@ -15,6 +15,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query("select s from Student s where s.stream.id = ?1")
     List<Student> studentsInStream(long id);
 
-    @Query("select s from Student s where s.stream.form.form = ?1")
+    @Query("select s from Student s where s.stream.form = ?1")
     List<Student> studentsInForm(int form);
 }

@@ -30,7 +30,7 @@ public class StudentsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable long id) {
+    public ResponseEntity<Student> getStudentById(@PathVariable String id) {
         Student student = studentService.getStudentById(id);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
@@ -64,7 +64,7 @@ public class StudentsController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable long id) {
+    public ResponseEntity<String> delete(@PathVariable String id) {
         return studentService.delete(id);
     }
 
@@ -79,7 +79,7 @@ public class StudentsController {
     }
 
     @GetMapping("/{id}/promote")
-    public ResponseEntity<Student> promote(@PathVariable int id) {
+    public ResponseEntity<Student> promote(@PathVariable String id) {
         Student student = studentService.promote(id);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }

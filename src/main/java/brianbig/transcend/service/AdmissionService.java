@@ -1,8 +1,8 @@
 package brianbig.transcend.service;
 
-import brianbig.transcend.entities.Form;
 import brianbig.transcend.entities.Stream;
 import brianbig.transcend.entities.Student;
+import brianbig.transcend.entities.enums.ClassForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class AdmissionService {
     }
 
     @Transactional
-    public Student promoteStudent(int id) {
+    public Student promoteStudent(String id) {
         Student student = studentService.getStudentById(id);
         if (student == null) {
             System.out.println("Student with given admission number does not exist");
@@ -47,12 +47,12 @@ public class AdmissionService {
     }
 
     private Stream handleStreamPromotion(Stream currentStream) {
-        Form nextForm = handleFormPromotion(currentStream.getForm());
+        ClassForm nextForm = getNextForm(currentStream.getForm());
         Optional<Stream> streamNext;
         if (nextForm == null)
             return null;
 
-        streamNext = classesService.getStream(nextForm.getForm(), currentStream.getName());
+        streamNext = classesService.getStream(nextForm.name(), currentStream.getName());
         if (streamNext.isPresent()) {
             return streamNext.get();
         } else {
@@ -67,27 +67,18 @@ public class AdmissionService {
 
     }
 
-    private Form handleFormPromotion(Form currentForm) {
-        Form newForm;
-        int currForm = currentForm.getForm();
-        Form formNext;
+    private ClassForm getNextForm(ClassForm currentForm) {
+        ClassForm newForm;
+        int currForm = ClassForm.form(currentForm);
+        ClassForm formNext;
         if (currForm >= 4) {
             return null;
         } else {
             currForm++;
-            newForm = new Form(currForm);
+            newForm = ClassForm.from(currForm);
         }
 
-        formNext = classesService.getForm(newForm.getForm());
-        if (formNext != null) {
-            return formNext;
-        } else {
-            Form insertedForm = classesService.insert(newForm);
-            if (insertedForm == null) {
-                System.out.println("New Form creation failed");
-                return null;
-            } else return insertedForm;
-        }
+        return newForm;
 
     }
 

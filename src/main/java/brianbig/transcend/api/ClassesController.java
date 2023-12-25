@@ -1,7 +1,6 @@
 package brianbig.transcend.api;
 
 import brianbig.transcend.service.ClassesService;
-import brianbig.transcend.entities.Form;
 import brianbig.transcend.entities.Stream;
 import brianbig.transcend.entities.Student;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -27,32 +26,6 @@ public class ClassesController {
         this.classesService = classesService;
     }
 
-    @GetMapping("/forms")
-    public ResponseEntity<List<Form>> allForms() {
-        return classesService.getAll();
-    }
-
-    @GetMapping("/forms/{id}")
-    public ResponseEntity<Form> getFormById(@PathVariable long id) {
-        return classesService.getFormById(id);
-    }
-
-    @PostMapping("/forms")
-    public ResponseEntity<Form> add(@RequestBody Form form) {
-        Form form1 = classesService.insert(form);
-        return new ResponseEntity<>(form1, HttpStatus.OK);
-    }
-
-    @PutMapping("/forms")
-    public Form update(@RequestBody Form form) {
-        return classesService.update(form);
-    }
-
-    @DeleteMapping("/forms/{id}")
-    public ResponseEntity<String> delete(@PathVariable long id) {
-        return classesService.delete(id);
-    }
-
     @GetMapping("/forms/{id}/students")
     public ResponseEntity<List<Student>> formStudents(@PathVariable int id) {
         return classesService.studentPerForm(id);
@@ -64,7 +37,7 @@ public class ClassesController {
     }
 
     @GetMapping("/streams/{id}")
-    public ResponseEntity<Stream> getStreamById(@PathVariable long id) {
+    public ResponseEntity<Stream> getStreamById(@PathVariable String id) {
         return classesService.getStreamById(id);
     }
 
@@ -80,8 +53,8 @@ public class ClassesController {
     }
 
     @DeleteMapping("/streams/{id}")
-    public ResponseEntity<String> deleteStream(@PathVariable long id) {
-        return classesService.delete(id);
+    public ResponseEntity<String> deleteStream(@PathVariable String id) {
+        return classesService.deleteStream(id);
     }
 
     @GetMapping("/streams/{id}/students")

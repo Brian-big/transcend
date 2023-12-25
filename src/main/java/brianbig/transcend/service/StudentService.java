@@ -59,7 +59,7 @@ public class StudentService {
         return student;
     }
 
-    public Student getStudentById(long id){
+    public Student getStudentById(String id){
         Optional<Student> student = repo.findById(id);
         return student.orElse(null);
     }
@@ -72,7 +72,7 @@ public class StudentService {
     @Transactional
     public Student updateStudent(Student student){
         if (!Objects.equals(student.getFirstName(), "") &&
-                !Objects.equals(student.getSurname(), "") &&
+                !Objects.equals(student.getLastName(), "") &&
                 student.getDateOfBirth() != null &&
                 student.getDateOfAdmission() !=null
         ){
@@ -82,8 +82,8 @@ public class StudentService {
             if (!Objects.equals(studentById.getFirstName(), student.getFirstName())){
                 studentById.setFirstName(student.getFirstName());
             }
-            if (!Objects.equals(studentById.getSurname(), student.getSurname())){
-                studentById.setSurname(student.getSurname());
+            if (!Objects.equals(studentById.getLastName(), student.getLastName())){
+                studentById.setLastName(student.getLastName());
             }
             if (!Objects.equals(studentById.getDateOfBirth(), student.getDateOfBirth())){
                 studentById.setDateOfBirth(student.getDateOfBirth());
@@ -96,7 +96,7 @@ public class StudentService {
         return student;
     }
 
-    public ResponseEntity<String> delete(long id) {
+    public ResponseEntity<String> delete(String id) {
         ResponseEntity<String> response;
         Optional<Student> student = repo.findById(id);
         if (student.isPresent()){
@@ -117,7 +117,7 @@ public class StudentService {
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
-    public Student promote(int id){
+    public Student promote(String id){
         return admissionService.promoteStudent(id);
     }
 }
